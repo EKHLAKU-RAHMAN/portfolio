@@ -94,7 +94,7 @@ export function Hero() {
               Hire Me
             </Link>
             <a
-              href="/portfolio/updated_resume_final.pdf"
+              href="https://drive.google.com/file/d/12PiKMKsxWswevn25q3m5D4yc-uCm_2EH/view?usp=drive_link"
               download={`${SITE.name.replace(/\s+/g, "-")}-Resume.pdf`}
               className="rounded-xl border border-white/15 bg-white/5 px-8 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur transition hover:border-cyan-400/40 hover:bg-white/10 hover:text-white light:border-slate-300 light:bg-white light:text-slate-800 light:hover:border-cyan-500/50 light:hover:bg-cyan-50 light:hover:text-slate-900"
             >
