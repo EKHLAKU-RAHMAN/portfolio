@@ -1,26 +1,99 @@
-@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cursor-x: 50%;
+  --cursor-y: 50%;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-[#05060a] text-slate-100 antialiased;
+  background-image: radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(34, 211, 238, 0.12),
+      transparent 50%
+    ),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(167, 139, 250, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 0% 80%, rgba(251, 113, 133, 0.06), transparent);
+  background-attachment: fixed;
+}
+
+html[data-theme="light"] body {
+  @apply bg-white text-slate-900 antialiased;
+  background-image: radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(34, 211, 238, 0.1),
+      transparent 50%
+    ),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(167, 139, 250, 0.07), transparent),
+    radial-gradient(ellipse 60% 40% at 0% 80%, rgba(251, 113, 133, 0.05), transparent);
+  background-attachment: fixed;
+}
+
+html[data-theme="light"] .glass {
+  @apply border-slate-200/80 bg-white/75 shadow-[0_8px_32px_rgba(15,23,42,0.08)] backdrop-blur-xl;
+}
+
+html[data-theme="light"] .glass-strong {
+  @apply border-slate-200/90 bg-white/85 backdrop-blur-2xl;
+}
+
+html[data-theme="light"] .glow-border {
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.08),
+    0 0 40px -10px rgba(34, 211, 238, 0.22);
+}
+
+@layer utilities {
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.35)];
+  }
+
+  .glass-strong {
+    @apply border border-white/15 bg-white/[0.07] backdrop-blur-2xl;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-cyan-300 via-violet-300 to-rose-300 bg-clip-text text-transparent;
+  }
+
+  .glow-border {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 40px -10px rgba(34, 211, 238, 0.35);
+  }
+}
+
+@keyframes template-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.template-enter {
+  animation: template-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
